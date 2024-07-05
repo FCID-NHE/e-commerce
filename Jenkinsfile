@@ -27,10 +27,10 @@ pipeline {
         stage('Deploy to Remote Docker Server') {
             steps {
                 script {
-                    sh 'ssh user@docker1 "docker pull FCID-NHE/e-commerce:${env.BUILD_ID}"'
-                    sh 'ssh user@docker1 "docker stop my-container || true"'
-                    sh 'ssh user@docker1 "docker rm my-container || true"'
-                    sh 'ssh user@docker1 "docker run -d --name my-container -p 8080:80 FCID-NHE/e-commerce:${env.BUILD_ID}"'
+                    sh 'ssh docker-yoda@10.10.10.10 "docker pull FCID-NHE/e-commerce:${env.BUILD_ID}"'
+                    sh 'ssh docker-yoda@10.10.10.10 "docker stop my-container || true"'
+                    sh 'ssh docker-yoda@10.10.10.10 "docker rm my-container || true"'
+                    sh 'ssh docker-yoda@10.10.10.10 "docker run -d --name my-container -p 8080:80 FCID-NHE/e-commerce:${env.BUILD_ID}"'
                 }
             }
         }
